@@ -23,7 +23,6 @@ public class EditActivity extends AppCompatActivity {
             String text = intent.getStringExtra("text");
             if (text != null)
                 edit_text.setText(text);
-
         }
     }
 

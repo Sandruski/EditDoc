@@ -10,6 +10,7 @@ import android.widget.TextView;
 public class DocActivity extends AppCompatActivity {
 
     public static final int EDIT_TITLE = 0;
+    public static final int EDIT_DOC = 1;
     // Model
     private String title = "Title", doc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a dapibus leo. Praesent fringilla condimentum tortor quis mattis. Vestibulum eu porta sapien. Nulla facilisi. Vivamus a bibendum turpis. Praesent pretium at sem non efficitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in euismod neque, eu feugiat justo. Pellentesque vel nisl tellus. Donec cursus, metus nec laoreet ultricies, neque nunc euismod quam, non pulvinar enim augue condimentum quam.";
 
@@ -39,11 +40,38 @@ public class DocActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.option_edit_title:
-                Intent intent = new Intent(this, EditActivity.class);
-                intent.putExtra("text", title);
-                startActivityForResult(intent, EDIT_TITLE);
+                Intent intentTitle = new Intent(this, EditActivity.class);
+                intentTitle.putExtra("text", title);
+                startActivityForResult(intentTitle, EDIT_TITLE); // Ctrl + Alt + C: crear una constant d'una variable
+                break;
+            case R.id.option_edit_doc:
+                Intent intentDoc = new Intent(this, EditActivity.class);
+                intentDoc.putExtra("text", doc);
+                startActivityForResult(intentDoc, EDIT_DOC); // Ctrl + Alt + C: crear una constant d'una variable
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(requestCode) {
+            case EDIT_TITLE:
+                if (resultCode == RESULT_OK) {
+                    title = data.getStringExtra("text");
+                    title_view.setText(title);
+                }
+                // Tirar amb el botó enrere == RESULT_CANCELED
+                break;
+            case EDIT_DOC:
+                if (resultCode == RESULT_OK) {
+                    doc = data.getStringExtra("text");
+                    doc_view.setText(doc);
+                }
+                // Tirar amb el botó enrere == RESULT_CANCELED
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
