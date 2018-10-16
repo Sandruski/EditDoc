@@ -39,16 +39,18 @@ public class DocActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
-            case R.id.option_edit_title:
-                Intent intentTitle = new Intent(this, EditActivity.class);
-                intentTitle.putExtra("text", title);
-                startActivityForResult(intentTitle, EDIT_TITLE); // Ctrl + Alt + C: crear una constant d'una variable
+            case R.id.option_edit_title: {
+                Intent intent = new Intent(this, EditActivity.class);
+                intent.putExtra("text", title);
+                startActivityForResult(intent, EDIT_TITLE); // Ctrl + Alt + C: crear una constant d'una variable
                 break;
-            case R.id.option_edit_doc:
-                Intent intentDoc = new Intent(this, EditActivity.class);
-                intentDoc.putExtra("text", doc);
-                startActivityForResult(intentDoc, EDIT_DOC); // Ctrl + Alt + C: crear una constant d'una variable
+            }
+            case R.id.option_edit_doc: {
+                Intent intent = new Intent(this, EditActivity.class);
+                intent.putExtra("text", doc);
+                startActivityForResult(intent, EDIT_DOC); // Ctrl + Alt + C: crear una constant d'una variable
                 break;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
